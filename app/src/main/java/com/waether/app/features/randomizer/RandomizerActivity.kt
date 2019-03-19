@@ -13,8 +13,12 @@ class RandomizerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val viewModel = ViewModelProviders.of(this).get(RandomizerViewModel::class.java)
-        viewModel.randomNumber.observe(this,
+        viewModel.numberLiveData.observe(this,
             Observer { random_number_textView.text = it.toString() }
             )
+
+        button.setOnClickListener {
+            viewModel.increment()
+        }
     }
 }
