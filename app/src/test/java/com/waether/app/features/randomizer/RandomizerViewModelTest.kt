@@ -23,7 +23,7 @@ class RandomizerViewModelTest{
     }
 
     @Test
-    fun `increment When numberLiveData Value I sZero Then Update numberLiveData Value To One`(){
+    fun `increment When numberLiveData Value Is Zero Then Update numberLiveData Value To One`(){
         // Arrange
         val viewModel = RandomizerViewModel()
         viewModel.numberLiveData.value = 0
@@ -34,5 +34,40 @@ class RandomizerViewModelTest{
         val result = viewModel.numberLiveData.value
         Assert.assertTrue(result == 1)
     }
+    @Test
+    fun `stateSwitch when stateLiveData is false Then change it to true`(){
+        //Arrange
+        val viewModel = RandomizerViewModel()
+        viewModel.stateLiveData.value = false
 
+        //Act
+        viewModel.stateSwitch()
+
+        //Assert
+        val result = viewModel.stateLiveData.value
+        Assert.assertTrue(result!!)
+    }
+    @Test
+    fun `stateSwitch when stateLiveData is true Then change it to false`(){
+        //Arrange
+        val viewModel = RandomizerViewModel()
+        viewModel.stateLiveData.value = true
+
+        //Act
+        viewModel.stateSwitch()
+
+        //Assert
+        val result = viewModel.stateLiveData.value
+        Assert.assertFalse(result!!)
+    }
+    @Test
+    fun `init then update stateLiveData to false`(){
+        //Arrange
+        //Act
+        val viewModel = RandomizerViewModel()
+
+        //Assert
+        val result = viewModel.stateLiveData.value
+        Assert.assertFalse(result!!)
+    }
 }

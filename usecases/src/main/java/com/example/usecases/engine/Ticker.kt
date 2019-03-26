@@ -1,9 +1,8 @@
-package com.example.usecases
+package com.example.usecases.engine
 
 import android.os.CountDownTimer
 import android.util.Log
 import io.reactivex.Observable
-import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit

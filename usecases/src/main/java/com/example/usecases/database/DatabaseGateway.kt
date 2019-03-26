@@ -7,8 +7,13 @@ import android.arch.persistence.room.TypeConverters
 import com.example.entities.City
 import com.example.entities.Coordinates
 import com.example.entities.FavoriteCityId
+import com.example.usecases.applicationLiveData
+import com.example.usecases.getNonnull
 import com.google.gson.Gson
 
+val weatherDatabase by lazy {
+    initializeDatabase(applicationLiveData.getNonnull())
+}
 
 @Database(entities = [City::class,FavoriteCityId::class]
     , version = 1

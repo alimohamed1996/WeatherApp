@@ -2,12 +2,13 @@ package com.waether.app.features.randomizer
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.example.usecases.Ticker
-import com.example.usecases.incrementNumber
-import com.example.usecases.randomNumberGenerator
-import com.example.usecases.tickerObserval
+import com.example.usecases.*
+import com.example.usecases.engine.Ticker
+import com.example.usecases.engine.tickerObserval
+
 
 private const val DEFAULT_VALUE = 0
+private const val DEFAULT_STATE_VALUE = false
 
 class RandomizerViewModel : ViewModel(){
 
@@ -16,14 +17,22 @@ class RandomizerViewModel : ViewModel(){
 
     val randomNumber = MutableLiveData<Int>()
     val numberLiveData = MutableLiveData<Int>()
+    val stateLiveData = MutableLiveData<Boolean>()
     init {
         randomNumber.postValue(DEFAULT_VALUE)
         numberLiveData.postValue(DEFAULT_VALUE)
+        stateLiveData.postValue(DEFAULT_STATE_VALUE)
         //ticker.start()
 //        tickerObserval {
 //            randomNumber.postValue(randomNumberGenerator().toInt())
 //        }
     }
+    fun stateSwitch(){
+        switchState(stateLiveData)
+    }
+
+
+
     fun increment(){
         incrementNumber( mutableLiveData = numberLiveData)
     }

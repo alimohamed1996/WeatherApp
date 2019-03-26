@@ -5,8 +5,10 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.waether.app.R
+import com.waether.app.core.ViewById
 import kotlinx.android.synthetic.main.activity_randomizer.*
 
+@ViewById(R.layout.activity_randomizer)
 class RandomizerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         setContentView(R.layout.activity_randomizer)
@@ -20,5 +22,13 @@ class RandomizerActivity : AppCompatActivity() {
         button.setOnClickListener {
             viewModel.increment()
         }
+        task_button.setOnClickListener {
+            viewModel.stateSwitch()
+        }
+        viewModel.stateLiveData.observe(this,
+            Observer {
+                val text = if (it == true) "Clicked" else "UnClicked"
+                task_button.text = text
+            })
     }
 }
